@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="BOT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>joker.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{dd.MM HH:mm:ss} |  %m%n
+            </pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>archived/log_%d{dd-MM-yyyy}.log</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>10MB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+    <appender name="ALL" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{dd.MM HH:mm:ss} |  %m%n
+            </pattern>
+        </encoder>
+    </appender>
+    <logger name="com.zheltoukhov.joker" level="INFO">
+        <appender-ref ref="BOT" />
+    </logger>
+
+    <logger name="org.springframework" level="ERROR" />
+
+    <root level="INFO">
+        <appender-ref ref="ALL" />
+    </root>
+</configuration>
